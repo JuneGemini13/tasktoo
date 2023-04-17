@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
@@ -24,18 +25,31 @@ public class App {
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    String name = eElement.getElementsByTagName("name").item(0).getTextContent();
-                    String postal = eElement.getElementsByTagName("postalZip").item(0).getTextContent();
-                    String region = eElement.getElementsByTagName("region").item(0).getTextContent();
-                    String country = eElement.getElementsByTagName("country").item(0).getTextContent();
-                    String address = eElement.getElementsByTagName("address").item(0).getTextContent();
-                    String list = eElement.getElementsByTagName("list").item(0).getTextContent();
-                    System.out.println("Name: " + name);
-                    System.out.println("PostalZip: " + postal);
-                    System.out.println("Region: " + region);
-                    System.out.println("Country: " + country);
-                    System.out.println("Address: " + address);
-                    System.out.println("List: " + list);
+                    List<String> fieldsToOutput = Arrays.asList(args);
+                    if (fieldsToOutput.contains("name")) {
+                        String name = eElement.getElementsByTagName("name").item(0).getTextContent();
+                        System.out.println("Name: " + name);
+                    }
+                    if (fieldsToOutput.contains("postalZip")) {
+                        String postal = eElement.getElementsByTagName("postalZip").item(0).getTextContent();
+                        System.out.println("PostalZip: " + postal);
+                    }
+                    if (fieldsToOutput.contains("region")) {
+                        String region = eElement.getElementsByTagName("region").item(0).getTextContent();
+                        System.out.println("Region: " + region);
+                    }
+                    if (fieldsToOutput.contains("country")) {
+                        String country = eElement.getElementsByTagName("country").item(0).getTextContent();
+                        System.out.println("Country: " + country);
+                    }
+                    if (fieldsToOutput.contains("address")) {
+                        String address = eElement.getElementsByTagName("address").item(0).getTextContent();
+                        System.out.println("Address: " + address);
+                    }
+                    if (fieldsToOutput.contains("list")) {
+                        String list = eElement.getElementsByTagName("list").item(0).getTextContent();
+                        System.out.println("List: " + list);
+                    }
                 }
             }
         } catch (Exception e) {
